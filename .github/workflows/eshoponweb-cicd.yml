@@ -9,8 +9,7 @@ env:
   LOCATION: southcentralus
   TEMPLATE-FILE: .azure/bicep/webapp.bicep
   SUBSCRIPTION-ID: e63b0417-2ec1-4083-ad06-a778e3f5281f
-  WEBAPP-NAME: az400-prue-Web
-
+  WEBAPP-NAME: az400-prue-We
 
 jobs:
   #Build, test and publish .net web project in repository
@@ -71,8 +70,10 @@ jobs:
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
     - name: Azure Login
       uses: azure/login@v1
-      with:
-        credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      with: # Set Azure credentials secret as an input
+       credentials: ${{ secrets.AZURE_CREDENTIALS }}
+      env: # Or as an environment variable
+       credentials: ${{ secrets.AZURE_CREDENTIALS }}
       
            
     # Deploy Azure WebApp using Bicep file

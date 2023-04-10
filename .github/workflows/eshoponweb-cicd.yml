@@ -59,6 +59,11 @@ jobs:
       with:
         name: .net-app
         path: .net-app
+    - name: Verify az CLI version
+      run: az --version
+    - name: Install az CLI
+      run: |
+       curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
   
     #Download the bicep templates from previous job
     - name: Download artifact from build job

@@ -9,7 +9,7 @@ env:
   LOCATION: southcentralus
   TEMPLATE-FILE: .azure/bicep/webapp.bicep
   SUBSCRIPTION-ID: e63b0417-2ec1-4083-ad06-a778e3f5281f
-  WEBAPP-NAME: az400-prue-We
+  WEBAPP-NAME: az400-webApp-pru
 
 jobs:
   #Build, test and publish .net web project in repository
@@ -66,12 +66,7 @@ jobs:
       with:
         name: bicep-template
         path: bicep-template
-        
-    - name: Set up Azure CLI
-      uses: azure/setup-az-cli@v1
-      with:
-       version: '2.25.0'     
-       
+
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)
     - name: Azure Login
       uses: azure/login@v1

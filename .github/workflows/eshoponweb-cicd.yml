@@ -4,7 +4,13 @@ name: eShopOnWeb Build and Test
 on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
-
+env:
+        RESOURCE-GROUP: rg-az400-eshoponweb-prueba
+        LOCATION: southcentralus
+        TEMPLATE-FILE: .azure/bicep/webapp.bicep
+        SUBSCRIPTION-ID: e63b0417-2ec1-4083-ad06-a778e3f5281f
+        WEBAPP-NAME: az400-webApp-pru
+        
 jobs:
   #Build, test and publish .net web project in repository
   buildandtest:
@@ -82,12 +88,7 @@ jobs:
         environment: azurecloud
         allow-no-subscriptions: false
         audience: api://AzureADTokenExchange
-      env:
-        RESOURCE-GROUP: rg-az400-eshoponweb-prueba
-        LOCATION: southcentralus
-        TEMPLATE-FILE: .azure/bicep/webapp.bicep
-        SUBSCRIPTION-ID: e63b0417-2ec1-4083-ad06-a778e3f5281f
-        WEBAPP-NAME: az400-webApp-pru
+      
         
     # Deploy Azure WebApp using Bicep file
     - name: deploy

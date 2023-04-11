@@ -79,8 +79,9 @@ jobs:
       run: az --version
       
     - name: Login to Azure
-      uses: azure/login@v1.4.3
+      uses: azure/login@v1.4.6
       with:
+        cred: ${{ AZURE_CREDENTIALS1 }}
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 

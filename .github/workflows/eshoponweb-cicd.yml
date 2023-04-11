@@ -79,7 +79,7 @@ jobs:
           sudo apt-get install azure-cli
           
     - name: Set ID token URL
-      run: ${{ ACTIONS_ID_TOKEN_REQUEST_URL }}
+      run: ACTIONS_ID_TOKEN_REQUEST_URL=https://api.github.com/orgs/valili1603/eShopOnWeb/actions/runners/token
       
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)    
     - name: Check if az is installed

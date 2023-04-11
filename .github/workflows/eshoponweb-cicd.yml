@@ -78,7 +78,6 @@ jobs:
           
     - name: Set ID token URL
       run: |
-        ACTIONS_ID_TOKEN_REQUEST_URL=https://api.github.com/orgs/valili1603/eShopOnWeb/actions/runners/token
         permissions:
         id-token: write 
         contents: read

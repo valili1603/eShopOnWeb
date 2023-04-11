@@ -77,6 +77,10 @@ jobs:
           echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
           sudo apt-get update
           sudo apt-get install azure-cli
+          
+    - name: Set ID token URL
+      run: ${{ ACTIONS_ID_TOKEN_REQUEST_URL }}
+      
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)    
     - name: Check if az is installed
       run: az --version

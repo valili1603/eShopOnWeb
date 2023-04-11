@@ -4,12 +4,6 @@ name: eShopOnWeb Build and Test
 on: [push, workflow_dispatch]
 
 #Environment variables https://docs.github.com/en/actions/learn-github-actions/environment-variables
-env:
-  RESOURCE-GROUP: rg-az400-eshoponweb-prueba
-  LOCATION: southcentralus
-  TEMPLATE-FILE: .azure/bicep/webapp.bicep
-  SUBSCRIPTION-ID: e63b0417-2ec1-4083-ad06-a778e3f5281f
-  WEBAPP-NAME: az400-webApp-pru
 
 jobs:
   #Build, test and publish .net web project in repository
@@ -77,9 +71,11 @@ jobs:
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)    
     - name: Check if az is installed
       run: az --version
+      
     - name: Login to Azure
       uses: azure/login@v1.4.3
       with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
         enable-AzPSSession: true

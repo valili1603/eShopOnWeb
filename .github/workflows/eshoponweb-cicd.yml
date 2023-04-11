@@ -75,15 +75,24 @@ jobs:
           sudo apt-get update
           sudo apt-get install azure-cli
    #Login in your azure subscription using a service principal (credentials stored as GitHub Secret in repo)    
-    - name: Azure Login
+    - name: Check if az is installed
+      run: az --version
+    - name: Login to Azure
       uses: azure/login@v1.4.3
       with:
-         client-id: ${{ secrets.AZURE_CLIENT_ID }}
-         clientSecret: ${{ secrets.AZURE_CLIENT_SECRET }}
-         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
-         enable-AzPSSession: true
-
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }} 
+        enable-AzPSSession: true
+        environment: azurecloud
+        allow-no-subscriptions: false
+        audience: api://AzureADTokenExchange
+      env:
+        RESOURCE-GROUP: rg-az400-eshoponweb-prueba
+        LOCATION: southcentralus
+        TEMPLATE-FILE: .azure/bicep/webapp.bicep
+        SUBSCRIPTION-ID: e63b0417-2ec1-4083-ad06-a778e3f5281f
+        WEBAPP-NAME: az400-webApp-pru
+        
     # Deploy Azure WebApp using Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
